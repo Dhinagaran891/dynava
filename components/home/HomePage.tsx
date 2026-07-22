@@ -1,5 +1,5 @@
 import Navigation from "@/components/layout/Navigation";
-import HeroSection from "./HeroSection";
+import HeroSection from "./hero/HeroSection";
 
 export default function HomePage() {
   return (
