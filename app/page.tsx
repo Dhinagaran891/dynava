@@ -1,9 +1,14 @@
-import HomePage from "@/components/home/HomePage";
+import Navigation from "@/components/layout/Navigation";
+import Hero from "@/components/hero/Hero";
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-white">
-      <HomePage />
-    </main>
+    <>
+      <Navigation />
+
+      <main>
+        <Hero />
+      </main>
+    </>
   );
 }
