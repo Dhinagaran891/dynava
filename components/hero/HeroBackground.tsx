@@ -1,3 +1,5 @@
 export default function HeroBackground() {
-  return null;
+  return (
+    <div className="absolute inset-0" />
+  );
 }
