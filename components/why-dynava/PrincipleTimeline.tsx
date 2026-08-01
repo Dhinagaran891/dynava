@@ -2,33 +2,47 @@ import { principles } from "./data";
 
 const PrincipleTimeline = () => {
   return (
-    <div className="relative space-y-10">
+    <div className="space-y-14">
 
-      <div className="absolute left-[18px] top-3 bottom-3 w-px bg-slate-200" />
+      {principles.map((item) => (
 
-      {principles.map((principle) => {
-        const Icon = principle.icon;
+        <div
+          key={item.id}
+          className="group border-b border-slate-200 pb-12 last:border-none"
+        >
 
-        return (
-          <div key={principle.id} className="relative flex gap-6">
+          {/* Number */}
 
-            <div className="relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white border border-slate-200 shadow-sm">
-              <Icon className="h-4 w-4 text-blue-600" />
-            </div>
+          <div className="mb-5">
 
-            <div>
-              <h3 className="text-xl font-semibold text-slate-900">
-                {principle.title}
-              </h3>
+            <span className="bg-gradient-to-r from-blue-600 to-emerald-500 bg-clip-text text-6xl font-bold text-transparent opacity-20 transition-all duration-500 group-hover:opacity-100">
 
-              <p className="mt-2 max-w-lg leading-7 text-slate-600">
-                {principle.description}
-              </p>
-            </div>
+              {String(item.id).padStart(2, "0")}
+
+            </span>
 
           </div>
-        );
-      })}
+
+          {/* Title */}
+
+          <h3 className="max-w-md text-2xl font-semibold tracking-tight text-slate-900">
+
+            {item.title}
+
+          </h3>
+
+          {/* Description */}
+
+          <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
+
+            {item.description}
+
+          </p>
+
+        </div>
+
+      ))}
+
     </div>
   );
 };
