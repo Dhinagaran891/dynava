@@ -1,18 +1,55 @@
 "use client";
+
 import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
 
+const navItems = [
+  {
+    label: "Solutions",
+    href: "#solutions",
+  },
+  {
+    label: "Industries",
+    href: "#industries",
+  },
+  {
+    label: "Process",
+    href: "#process",
+  },
+  {
+    label: "About",
+    href: "#about",
+  },
+  {
+    label: "Careers",
+    href: "/careers",
+  },
+];
+
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
 
   return (
     <>
       {/* Hamburger Button */}
       <button
+        type="button"
         onClick={() => setIsOpen(true)}
-        className="rounded-xl p-2 transition-all duration-300 hover:bg-slate-100 lg:hidden"
+        className="
+          rounded-xl
+          p-2
+          transition-all
+          duration-300
+          hover:bg-slate-100
+          md:hidden
+        "
         aria-label="Open Menu"
+        aria-expanded={isOpen}
       >
         <Menu className="h-7 w-7 text-slate-800" />
       </button>
@@ -20,8 +57,16 @@ export default function MobileMenu() {
       {/* Background Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm lg:hidden"
-          onClick={() => setIsOpen(false)}
+          className="
+            fixed
+            inset-0
+            z-40
+            bg-black/20
+            backdrop-blur-sm
+            md:hidden
+          "
+          onClick={closeMenu}
+          aria-hidden="true"
         />
       )}
 
@@ -36,33 +81,55 @@ export default function MobileMenu() {
           rounded-[28px]
           border
           border-white/60
-          bg-white/85
-          backdrop-blur-2xl
+          bg-white/90
           shadow-2xl
+          backdrop-blur-2xl
           transition-all
           duration-300
-          lg:hidden
+          md:hidden
 
           ${
             isOpen
               ? "translate-y-0 opacity-100"
-              : "-translate-y-4 pointer-events-none opacity-0"
+              : "pointer-events-none -translate-y-4 opacity-0"
           }
         `}
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-200/70 p-6">
-         <Image
-  src="/images/logo/dynava-navbar.png"
-  alt="Dynava"
-  width={140}
-  height={36}
-  className="h-8 w-auto"
-/>
+        <div
+          className="
+            flex
+            items-center
+            justify-between
+            border-b
+            border-slate-200/70
+            p-6
+          "
+        >
+          <a
+            href="/"
+            onClick={closeMenu}
+            aria-label="Dynava home"
+          >
+            <Image
+              src="/images/logo/dynava-navbar.png"
+              alt="Dynava"
+              width={140}
+              height={36}
+              className="h-8 w-auto"
+            />
+          </a>
 
           <button
-            onClick={() => setIsOpen(false)}
-            className="rounded-lg p-2 transition hover:bg-slate-100"
+            type="button"
+            onClick={closeMenu}
+            className="
+              rounded-lg
+              p-2
+              transition
+              hover:bg-slate-100
+            "
+            aria-label="Close Menu"
           >
             <X className="h-6 w-6 text-slate-700" />
           </button>
@@ -70,41 +137,31 @@ export default function MobileMenu() {
 
         {/* Navigation */}
         <nav className="flex flex-col px-6 py-5">
-
-          <a
-            href="#solutions"
-            onClick={() => setIsOpen(false)}
-            className="rounded-xl px-3 py-4 text-lg font-medium text-slate-700 transition hover:bg-slate-100"
-          >
-            Solutions
-          </a>
-
-          <a
-            href="#industries"
-            onClick={() => setIsOpen(false)}
-            className="rounded-xl px-3 py-4 text-lg font-medium text-slate-700 transition hover:bg-slate-100"
-          >
-            Industries
-          </a>
-
-          <a
-            href="#process"
-            onClick={() => setIsOpen(false)}
-            className="rounded-xl px-3 py-4 text-lg font-medium text-slate-700 transition hover:bg-slate-100"
-          >
-            Process
-          </a>
-
-          <a
-            href="#about"
-            onClick={() => setIsOpen(false)}
-            className="rounded-xl px-3 py-4 text-lg font-medium text-slate-700 transition hover:bg-slate-100"
-          >
-            About
-          </a>
+          {navItems.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={closeMenu}
+              className="
+                rounded-xl
+                px-3
+                py-4
+                text-lg
+                font-medium
+                text-slate-700
+                transition
+                hover:bg-slate-100
+                hover:text-slate-950
+              "
+            >
+              {item.label}
+            </a>
+          ))}
 
           {/* CTA */}
-          <button
+          <a
+            href="#contact"
+            onClick={closeMenu}
             className="
               mt-6
               flex
@@ -127,8 +184,9 @@ export default function MobileMenu() {
             "
           >
             Book Consultation
+
             <ArrowRight className="h-5 w-5" />
-          </button>
+          </a>
         </nav>
       </div>
     </>

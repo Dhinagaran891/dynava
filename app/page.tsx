@@ -5,6 +5,8 @@ import Industries from "@/components/industries";
 import { WhyDynava } from "@/components/why-dynava";
 import { OurApproach } from "@/components/our-approach";
 import EditorialExperience from "@/components/editorial";
+import FinalCTA from "@/components/final-cta/FinalCTA";
+import Footer from "@/components/footer/Footer";
 
 export default function Page() {
   return (
@@ -18,7 +20,9 @@ export default function Page() {
         <WhyDynava />
         <OurApproach />
         <EditorialExperience />
+        <FinalCTA />
       </main>
+      <Footer />
     </>
   );
 }

@@ -1,54 +1,65 @@
 export default function HeroContent() {
   return (
-    <div className="mt-2 flex flex-col items-center text-center">
-
-      {/* Tagline */}
+    <div
+      className="
+        mt-14
+        w-full
+        max-w-[1050px]
+        px-5
+        sm:mt-16
+        sm:px-8
+        md:mt-18
+        lg:mt-20
+      "
+    >
+      {/* Category */}
       <p
         className="
-          mb-6
-          text-xs
-          font-semibold
+          mb-5
+          text-[11px]
+          font-medium
           uppercase
-          tracking-[0.18em]
-          text-slate-600
+          tracking-[0.25em]
+          text-slate-500
+          sm:text-xs
         "
       >
-        Intelligence for Every Enterprise
+        AI · DATA · DIGITAL
       </p>
 
       {/* Heading */}
       <h1
         className="
-          text-5xl
-          font-extrabold
-          leading-[0.92]
-          tracking-tight
-          text-slate-900
-          md:text-6xl
-          lg:text-7xl
+          max-w-[950px]
+          text-[clamp(3rem,6vw,5.7rem)]
+          font-normal
+          leading-[0.96]
+          tracking-[-0.045em]
+          text-slate-950
         "
       >
-        Enterprise AI
-        <br />
-        Built Around
-        <br />
-        Your Business.
+        Intelligence that moves
+        <br className="hidden sm:block" />
+        business forward.
       </h1>
 
-      {/* Description */}
+      {/* Supporting Copy */}
       <p
         className="
-          mt-8
-          max-w-2xl
-          text-lg
-          leading-8
+          mt-7
+          max-w-[720px]
+          text-base
+          leading-7
           text-slate-500
+          sm:mt-8
+          sm:text-lg
+          sm:leading-8
         "
       >
-        Helping organizations automate workflows, build intelligent software,
-        and deploy AI that delivers measurable business value.
+        We help organizations turn AI, data, and digital technology into
+        practical solutions that improve operations, strengthen decisions,
+        and create measurable business value.
       </p>
-
     </div>
   );
 }

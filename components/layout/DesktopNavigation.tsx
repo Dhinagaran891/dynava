@@ -5,13 +5,14 @@ const navItems = [
   { label: "Industries", href: "#industries" },
   { label: "Process", href: "#process" },
   { label: "About", href: "#about" },
+  { label: "Careers", href: "/careers" },
 ];
 
 export default function DesktopNavigation() {
   return (
-    <div className="hidden lg:flex flex-1 items-center justify-between ml-12">
+    <div className="hidden flex-1 items-center justify-between md:flex">
       {/* Navigation Links */}
-      <nav className="flex items-center gap-10">
+      <nav className="ml-30 flex items-center gap-8">
         {navItems.map((item) => (
           <a
             key={item.label}
@@ -20,9 +21,9 @@ export default function DesktopNavigation() {
               text-[15px]
               font-medium
               text-slate-700
-              transition-all
-              duration-300
-              hover:text-blue-600
+              transition-colors
+              duration-200
+              hover:text-slate-950
             "
           >
             {item.label}
@@ -55,10 +56,11 @@ export default function DesktopNavigation() {
         "
       >
         Book Consultation
+
         <span className="transition-transform duration-300 group-hover:translate-x-1">
           →
         </span>
       </a>
     </div>
-);
+  );
 }
