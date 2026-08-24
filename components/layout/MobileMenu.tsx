@@ -18,8 +18,8 @@ const navItems = [
     href: "#process",
   },
   {
-    label: "About",
-    href: "#about",
+    label: "About Us",
+    href: "/about",
   },
   {
     label: "Careers",
