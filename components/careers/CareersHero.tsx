@@ -63,7 +63,7 @@ export default function CareersHero() {
               sm:text-xs
             "
           >
-            Careers at Dynava
+            Careers at Dynava 
           </p>
 
           {/* Heading */}
@@ -83,9 +83,9 @@ export default function CareersHero() {
               xl:text-9xl
             "
           >
-            Build what
+          Build What
             <br />
-            comes next
+          Comes Next
             <span className="text-[#126BFF]">.</span>
           </h1>
 

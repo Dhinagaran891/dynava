@@ -29,11 +29,11 @@ export default function CareersValues() {
         border-t
         border-slate-200/70
         px-6
-        py-24
+        py-20
         sm:px-8
-        sm:py-28
+        sm:py-24
         lg:px-12
-        lg:py-36
+        lg:py-28
       "
     >
       <div className="mx-auto max-w-7xl">
@@ -46,7 +46,7 @@ export default function CareersValues() {
               text-[11px]
               font-medium
               uppercase
-              tracking-[0.28em]
+              tracking-[0.3em]
               text-[#126BFF]
               sm:text-xs
             "
@@ -90,7 +90,7 @@ export default function CareersValues() {
         {/* Values */}
         <div
           className="
-            mt-20
+            mt-16
             grid
             border-t
             border-slate-200
@@ -101,24 +101,41 @@ export default function CareersValues() {
             <article
               key={value.number}
               className="
+                relative
                 border-b
                 border-slate-200
                 py-8
                 sm:border-b-0
                 sm:border-r
                 sm:px-8
-                sm:py-10
+                sm:py-9
                 first:sm:pl-0
                 last:sm:border-r-0
                 last:sm:pr-0
               "
             >
+              {/* Dynava accent */}
+              <span
+                aria-hidden="true"
+                className="
+                  absolute
+                  left-0
+                  top-0
+                  h-px
+                  w-10
+                  bg-[#126BFF]
+                  sm:left-8
+                  first:sm:left-0
+                  last:sm:left-auto
+                "
+              />
+
               <span
                 className="
                   text-[10px]
                   font-medium
                   tracking-[0.2em]
-                  text-slate-400
+                  text-[#126BFF]
                 "
               >
                 {value.number}

@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export default function CareersApplication() {
   return (
     <section
@@ -9,12 +7,13 @@ export default function CareersApplication() {
         overflow-hidden
         border-t
         border-slate-200/70
+        bg-[#F7FAFF]
         px-6
-        py-24
+        py-20
         sm:px-8
-        sm:py-28
+        sm:py-24
         lg:px-12
-        lg:py-36
+        lg:py-28
       "
     >
       {/* Subtle Dynava atmosphere */}
@@ -23,29 +22,30 @@ export default function CareersApplication() {
         className="
           pointer-events-none
           absolute
-          -right-40
-          top-1/2
-          -z-10
-          h-[520px]
-          w-[520px]
+          left-1/2
+          top-0
+          -z-0
+          h-[420px]
+          w-[720px]
+          -translate-x-1/2
           -translate-y-1/2
           rounded-full
-          bg-blue-500/[0.035]
+          bg-[#126BFF]/[0.035]
           blur-[120px]
         "
       />
 
-      <div className="mx-auto max-w-7xl">
+      <div className="relative z-10 mx-auto max-w-7xl">
 
         {/* Introduction */}
-        <div className="max-w-3xl">
+        <div className="mx-auto max-w-3xl text-center">
           <p
             className="
               mb-6
               text-[11px]
               font-medium
               uppercase
-              tracking-[0.28em]
+              tracking-[0.3em]
               text-[#126BFF]
               sm:text-xs
             "
@@ -53,27 +53,39 @@ export default function CareersApplication() {
             Join Dynava
           </p>
 
-          <h2
-            id="careers-application-heading"
-            className="
-              text-4xl
-              font-medium
-              leading-[1.04]
-              tracking-[-0.04em]
-              text-slate-950
-              sm:text-5xl
-              lg:text-6xl
-            "
-          >
-            Tell us what
-            <br />
-            you can bring.
-          </h2>
+        <h2
+  id="careers-application-heading"
+  className="
+    text-4xl
+    font-medium
+    leading-[1.04]
+    tracking-[-0.04em]
+    text-slate-950
+    sm:text-5xl
+    lg:text-6xl
+  "
+>
+  Tell us what
+  <br />
+  <span
+    className="
+      bg-gradient-to-r
+      from-[#126BFF]
+      via-[#16B7E8]
+      to-[#00B889]
+      bg-clip-text
+      text-transparent
+    "
+  >
+    you can bring.
+  </span>
+</h2>
 
           <p
             className="
+              mx-auto
               mt-7
-              max-w-2xl
+              max-w-xl
               text-base
               leading-7
               text-slate-600
@@ -89,16 +101,17 @@ export default function CareersApplication() {
         {/* Application form */}
         <form
           className="
-            mt-16
+            mx-auto
+            mt-14
             max-w-4xl
             border-t
             border-slate-200
             pt-10
-            sm:mt-20
+            sm:mt-16
             sm:pt-12
           "
         >
-          <div className="grid gap-8 sm:grid-cols-2">
+          <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
 
             {/* Full name */}
             <div>
@@ -111,7 +124,7 @@ export default function CareersApplication() {
                   font-medium
                   uppercase
                   tracking-[0.16em]
-                  text-slate-500
+                  text-slate-600
                 "
               >
                 Full name
@@ -152,7 +165,7 @@ export default function CareersApplication() {
                   font-medium
                   uppercase
                   tracking-[0.16em]
-                  text-slate-500
+                  text-slate-600
                 "
               >
                 Email address
@@ -193,7 +206,7 @@ export default function CareersApplication() {
                   font-medium
                   uppercase
                   tracking-[0.16em]
-                  text-slate-500
+                  text-slate-600
                 "
               >
                 Phone
@@ -237,7 +250,7 @@ export default function CareersApplication() {
                   font-medium
                   uppercase
                   tracking-[0.16em]
-                  text-slate-500
+                  text-slate-600
                 "
               >
                 Area of interest
@@ -284,7 +297,7 @@ export default function CareersApplication() {
                   font-medium
                   uppercase
                   tracking-[0.16em]
-                  text-slate-500
+                  text-slate-600
                 "
               >
                 About you
@@ -326,7 +339,7 @@ export default function CareersApplication() {
                   font-medium
                   uppercase
                   tracking-[0.16em]
-                  text-slate-500
+                  text-slate-600
                 "
               >
                 Resume / CV
@@ -350,20 +363,21 @@ export default function CareersApplication() {
                   file:mr-4
                   file:rounded-md
                   file:border-0
-                  file:bg-slate-100
+                  file:bg-white
                   file:px-4
                   file:py-2
                   file:text-sm
                   file:font-medium
                   file:text-slate-700
-                  hover:file:bg-slate-200
+                  file:shadow-sm
+                  hover:file:bg-slate-50
                   focus:outline-none
                 "
               />
 
               <p className="mt-3 text-xs leading-5 text-slate-400">
-                PDF, DOC or DOCX. Maximum file size will be enforced when
-                the application backend is connected.
+                PDF, DOC or DOCX. Maximum file size will be enforced
+                when the application backend is connected.
               </p>
             </div>
           </div>
@@ -402,7 +416,7 @@ export default function CareersApplication() {
                   "
                 />
 
-                <span className="text-xs leading-5 text-slate-500">
+                <span className="text-xs leading-5 text-slate-600">
                   I consent to Dynava using the information provided
                   to evaluate my application and contact me regarding
                   relevant opportunities.
@@ -476,15 +490,16 @@ export default function CareersApplication() {
         {/* Closing brand line */}
         <div
           className="
-            mt-20
+            mt-16
             border-t
             border-slate-200
             pt-7
-            sm:mt-24
+            sm:mt-20
           "
         >
           <p
             className="
+              text-center
               text-[10px]
               font-medium
               uppercase
