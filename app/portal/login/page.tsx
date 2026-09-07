@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Turnstile } from "@marsidev/react-turnstile";
 import { createClient } from "@/lib/supabase/client";
 
 export default function PortalLoginPage() {
@@ -10,6 +11,7 @@ export default function PortalLoginPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -17,14 +19,25 @@ export default function PortalLoginPage() {
     event.preventDefault();
 
     setError("");
+
+    if (!captchaToken) {
+      setError("Please complete the security verification.");
+      return;
+    }
+
     setIsLoading(true);
 
-    const { error: signInError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    const { error: signInError } =
+      await supabase.auth.signInWithPassword({
+        email,
+        password,
+        options: {
+          captchaToken,
+        },
+      });
 
     if (signInError) {
+      console.error("Supabase sign-in error:", signInError);
       setError("Unable to sign in with those credentials.");
       setIsLoading(false);
       return;
@@ -103,6 +116,21 @@ export default function PortalLoginPage() {
               />
             </div>
 
+            <div className="flex justify-center">
+              <Turnstile
+                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                onSuccess={(token) => {
+                  setCaptchaToken(token);
+                  setError("");
+                }}
+                onExpire={() => setCaptchaToken(null)}
+                onError={() => {
+                  setCaptchaToken(null);
+                  setError("Security verification failed. Please try again.");
+                }}
+              />
+            </div>
+
             {error && (
               <p
                 role="alert"
@@ -114,7 +142,7 @@ export default function PortalLoginPage() {
 
             <button
               type="submit"
-              disabled={isLoading}
+              disabled={isLoading || !captchaToken}
               className="group flex w-full items-center justify-between border border-[#126BFF] px-5 py-4 text-sm font-medium text-slate-950 transition-colors hover:border-[#00B889] hover:bg-white disabled:cursor-not-allowed disabled:opacity-60"
             >
               <span>{isLoading ? "Signing in..." : "Sign in"}</span>
