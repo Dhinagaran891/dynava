@@ -61,8 +61,7 @@ export default function MobileMenu() {
             fixed
             inset-0
             z-40
-            bg-black/20
-            backdrop-blur-sm
+            bg-slate-950/10
             md:hidden
           "
           onClick={closeMenu}
@@ -112,7 +111,7 @@ export default function MobileMenu() {
             aria-label="Dynava home"
           >
             <Image
-              src="/images/logo/dynava-navbar.png"
+              src="/images/logo/dynava-transparent.png"
               alt="Dynava"
               width={140}
               height={36}
@@ -158,12 +157,43 @@ export default function MobileMenu() {
             </a>
           ))}
 
+          {/* Client Portal */}
+          <a
+            href="/portal/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+            className="
+              mt-5
+              flex
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-slate-200
+              bg-white
+              px-6
+              py-3.5
+              text-sm
+              font-semibold
+              text-slate-700
+              shadow-sm
+              transition-all
+              duration-300
+              hover:border-blue-200
+              hover:text-slate-950
+              hover:shadow-md
+            "
+          >
+            Client Portal
+          </a>
+
           {/* CTA */}
           <a
             href="#contact"
             onClick={closeMenu}
             className="
-              mt-6
+              mt-3
               flex
               items-center
               justify-center

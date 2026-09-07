@@ -1,11 +1,14 @@
 import PortalNav from "@/components/portal/PortalNav";
+import PortalAccount from "./PortalAccount";
 
 interface PortalSidebarProps {
   isDynavaStaff: boolean;
+  email: string;
 }
 
 export default function PortalSidebar({
   isDynavaStaff,
+  email,
 }: PortalSidebarProps) {
   const navigation = isDynavaStaff
     ? [
@@ -25,16 +28,19 @@ export default function PortalSidebar({
 
   return (
     <aside className="hidden w-64 shrink-0 border-r border-slate-200/80 bg-white lg:block">
-      <nav
-        aria-label="Portal navigation"
-        className="sticky top-0 px-6 py-8"
-      >
-        <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.25em] text-[#126BFF]">
-          Workspace
-        </p>
+      <div className="flex min-h-[calc(100vh-5rem)] flex-col px-6 py-8">
+        <div>
+          <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.25em] text-[#126BFF]">
+            Workspace
+          </p>
 
-        <PortalNav items={navigation} />
-      </nav>
+          <PortalNav items={navigation} />
+        </div>
+
+        <div className="mt-auto pt-10">
+          <PortalAccount email={email} />
+        </div>
+      </div>
     </aside>
   );
 }

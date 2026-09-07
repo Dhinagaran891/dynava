@@ -1,12 +1,11 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 export default function PortalLoginPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const supabase = createClient();
 
   const [email, setEmail] = useState("");
@@ -31,7 +30,7 @@ export default function PortalLoginPage() {
       return;
     }
 
-    const next = searchParams.get("next");
+    const next = new URLSearchParams(window.location.search).get("next");
 
     const destination =
       next && next.startsWith("/") && !next.startsWith("//")

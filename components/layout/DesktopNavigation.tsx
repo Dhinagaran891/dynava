@@ -31,36 +31,67 @@ export default function DesktopNavigation() {
         ))}
       </nav>
 
-      {/* CTA */}
-      <a
-        href="#contact"
-        className="
-          group
-          inline-flex
-          items-center
-          gap-2
-          rounded-full
-          bg-gradient-to-r
-          from-blue-600
-          to-emerald-500
-          px-6
-          py-3
-          text-sm
-          font-semibold
-          text-white
-          shadow-lg
-          transition-all
-          duration-300
-          hover:-translate-y-0.5
-          hover:shadow-xl
-        "
-      >
-        Book Consultation
+      {/* Actions */}
+      <div className="flex items-center gap-3">
+        <a
+          href="/portal/login"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            inline-flex
+            items-center
+            gap-2
+            rounded-full
+            border
+            border-slate-200
+            bg-white/70
+            px-5
+            py-3
+            text-sm
+            font-semibold
+            text-slate-700
+            shadow-sm
+            transition-all
+            duration-300
+            hover:-translate-y-0.5
+            hover:border-blue-200
+            hover:text-slate-950
+            hover:shadow-md
+          "
+        >
+          Client Portal
+        </a>
 
-        <span className="transition-transform duration-300 group-hover:translate-x-1">
-          →
-        </span>
-      </a>
+        <a
+          href="#contact"
+          className="
+            group
+            inline-flex
+            items-center
+            gap-2
+            rounded-full
+            bg-gradient-to-r
+            from-blue-600
+            to-emerald-500
+            px-6
+            py-3
+            text-sm
+            font-semibold
+            text-white
+            shadow-lg
+            transition-all
+            duration-300
+            hover:-translate-y-0.5
+            hover:shadow-xl
+          "
+        >
+          Book Consultation
+
+          <span className="transition-transform duration-300 group-hover:translate-x-1">
+            →
+          </span>
+        </a>
+      </div>
     </div>
   );
 }

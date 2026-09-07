@@ -53,9 +53,9 @@ export default function Navigation() {
           className="flex shrink-0 items-center"
         >
           <img
-            src="/images/logo/dynava-navbar.png"
+            src="/images/logo/dynava-transparent.png"
             alt="Dynava"
-            className="h-8 w-auto sm:h-9"
+            className="h-6 w-auto sm:h-7"
           />
         </a>
 
