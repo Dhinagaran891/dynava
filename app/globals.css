@@ -182,3 +182,49 @@
     animation: none;
   }
 }
+.contact-input {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  border-radius: 16px;
+  border: 1px solid rgb(226 232 240);
+  background: rgb(248 250 252);
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgb(15 23 42);
+  outline: none;
+  box-shadow:
+    inset 0 1px 2px rgb(15 23 42 / 0.02),
+    0 1px 2px rgb(15 23 42 / 0.02);
+  transition:
+    border-color 200ms ease,
+    background-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+.contact-input::placeholder {
+  color: rgb(148 163 184);
+}
+
+.contact-input:hover {
+  border-color: rgb(203 213 225);
+  background: white;
+}
+
+.contact-input:focus {
+  border-color: rgb(147 197 253);
+  background: white;
+  box-shadow:
+    0 0 0 4px rgb(219 234 254),
+    0 4px 14px rgb(15 23 42 / 0.04);
+}
+
+textarea.contact-input {
+  min-height: 150px;
+}
+
+select.contact-input {
+  cursor: pointer;
+}

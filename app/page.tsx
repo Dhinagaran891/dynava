@@ -7,10 +7,14 @@ import { OurApproach } from "@/components/our-approach";
 import EditorialExperience from "@/components/editorial";
 import FinalCTA from "@/components/final-cta/FinalCTA";
 import Footer from "@/components/footer/Footer";
+import {
+  TalkToDynava,
+  TalkToDynavaProvider,
+} from "@/components/talk-to-dynava";
 
 export default function Page() {
   return (
-    <>
+    <TalkToDynavaProvider>
       <Navigation />
 
       <main className="overflow-x-clip">
@@ -22,7 +26,10 @@ export default function Page() {
         <EditorialExperience />
         <FinalCTA />
       </main>
+
+      <TalkToDynava />
+
       <Footer />
-    </>
+    </TalkToDynavaProvider>
   );
 }
