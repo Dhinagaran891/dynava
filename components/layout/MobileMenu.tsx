@@ -25,6 +25,9 @@ const navItems = [
     label: "Careers",
     href: "/careers",
   },
+  {label: "Contact",
+    href: "/contact",
+  },
 ];
 
 export default function MobileMenu() {
