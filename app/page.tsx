@@ -11,6 +11,7 @@ import {
   TalkToDynava,
   TalkToDynavaProvider,
 } from "@/components/talk-to-dynava";
+import { DynavaIntro } from "@/components/brand-intro";
 
 export default function Page() {
   return (
@@ -28,6 +29,7 @@ export default function Page() {
       </main>
 
       <TalkToDynava />
+      <DynavaIntro />
 
       <Footer />
     </TalkToDynavaProvider>

@@ -1,11 +1,12 @@
 "use client";
 
 const navItems = [
-  { label: "Solutions", href: "#solutions" },
-  { label: "Industries", href: "#industries" },
-  { label: "Process", href: "#process" },
+  { label: "Solutions", href: "/#solutions" },
+  { label: "Industries", href: "/#industries" },
+  { label: "Process", href: "/#process" },
   { label: "About", href: "/about" },
   { label: "Careers", href: "/careers" },
+  {label: "Contact", href: "/contact"},
 ];
 
 export default function DesktopNavigation() {
