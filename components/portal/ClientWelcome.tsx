@@ -1,97 +1,129 @@
-interface ClientWelcomeProps {
-  organizationName: string;
-}
+import { createClient } from "@/lib/supabase/server";
 
-export default function ClientWelcome({
+type ClientWelcomeProps = {
+  organizationId: string;
+  organizationName: string;
+};
+
+export default async function ClientWelcome({
+  organizationId,
   organizationName,
 }: ClientWelcomeProps) {
-  const steps = [
-    {
-      number: "01",
-      title: "Organization",
-      description: "Tell us about your business.",
-    },
-    {
-      number: "02",
-      title: "AI Readiness",
-      description: "Assess your current AI capabilities.",
-    },
-    {
-      number: "03",
-      title: "Insights",
-      description: "Understand your readiness and key gaps.",
-    },
-    {
-      number: "04",
-      title: "Recommendations",
-      description: "Identify practical next steps.",
-    },
-  ];
+  const supabase = await createClient();
+
+  const [
+    { count: assessmentCount },
+    { count: recommendationCount },
+    { count: documentCount },
+  ] = await Promise.all([
+    supabase
+      .from("assessments")
+      .select("*", { count: "exact", head: true })
+      .eq("organization_id", organizationId),
+
+    supabase
+      .from("recommendations")
+      .select("*", { count: "exact", head: true })
+      .eq(
+        "assessment_id",
+        (
+          await supabase
+            .from("assessments")
+            .select("id")
+            .eq("organization_id", organizationId)
+        ).data?.map((assessment) => assessment.id) ?? []
+      ),
+
+    supabase
+      .from("documents")
+      .select("*", { count: "exact", head: true })
+      .eq("organization_id", organizationId),
+  ]);
 
   return (
     <section aria-labelledby="client-welcome-heading">
-      <div className="max-w-4xl">
-        <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#126BFF]">
-          Welcome to Dynava
-        </p>
+      <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#126BFF]">
+        DYNAVA CLIENT PORTAL
+      </p>
 
-        <h1
-          id="client-welcome-heading"
-          className="mt-6 text-4xl font-medium leading-[1.05] tracking-[-0.04em] text-slate-950 sm:text-5xl lg:text-6xl"
-        >
-          Let&apos;s understand where{" "}
-          <span className="text-[#126BFF]">{organizationName}</span> stands
-          today.
-        </h1>
+      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h1
+            id="client-welcome-heading"
+            className="text-4xl font-medium tracking-[-0.04em] text-slate-950 sm:text-5xl"
+          >
+            Welcome to {organizationName}
+          </h1>
 
-        <p className="mt-7 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-          We&apos;ll start by understanding your organization, assess your
-          current AI readiness, and identify where intelligent technology can
-          create meaningful business impact.
-        </p>
-      </div>
-
-      <div className="mt-16 border-t border-slate-200">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((step) => (
-            <article
-              key={step.number}
-              className="border-b border-slate-200 py-8 sm:px-6 lg:border-b-0 lg:border-r first:lg:pl-0 last:lg:border-r-0 last:lg:pr-0"
-            >
-              <span className="text-[10px] font-medium tracking-[0.2em] text-[#126BFF]">
-                {step.number}
-              </span>
-
-              <h2 className="mt-5 text-xl font-medium tracking-[-0.02em] text-slate-950">
-                {step.title}
-              </h2>
-
-              <p className="mt-3 max-w-xs text-sm leading-6 text-slate-600">
-                {step.description}
-              </p>
-            </article>
-          ))}
+          <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
+            Your Dynava workspace gives you access to assessments,
+            recommendations, documents, and other resources shared with your
+            organization.
+          </p>
         </div>
       </div>
 
-      <div className="mt-12 flex items-center justify-between border-t border-slate-200 pt-8">
-        <p className="max-w-md text-sm leading-6 text-slate-500">
-          Your assessment can be completed at your own pace. Your progress will
-          be saved as you work.
-        </p>
+      <div className="mt-10 grid gap-4 sm:grid-cols-3">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6">
+          <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500">
+            Assessments
+          </p>
 
-        <button
-          type="button"
-          className="group flex shrink-0 items-center gap-4 border border-[#126BFF] px-5 py-3.5 text-sm font-medium text-slate-950 transition-colors hover:border-[#00B889] hover:bg-white"
-        >
-          Start assessment
-          <span
-            aria-hidden="true"
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-[#126BFF] text-[#126BFF] transition-colors group-hover:border-[#00B889] group-hover:text-[#00B889]"
-          >
-            →
+          <p className="mt-4 text-3xl font-medium tracking-[-0.03em] text-slate-950">
+            {assessmentCount ?? 0}
+          </p>
+
+          <p className="mt-2 text-sm leading-6 text-slate-500">
+            Assessments associated with your organization.
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-slate-200 bg-white p-6">
+          <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500">
+            Recommendations
+          </p>
+
+          <p className="mt-4 text-3xl font-medium tracking-[-0.03em] text-slate-950">
+            {recommendationCount ?? 0}
+          </p>
+
+          <p className="mt-2 text-sm leading-6 text-slate-500">
+            Opportunities and recommendations available to your organization.
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-slate-200 bg-white p-6">
+          <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500">
+            Documents
+          </p>
+
+          <p className="mt-4 text-3xl font-medium tracking-[-0.03em] text-slate-950">
+            {documentCount ?? 0}
+          </p>
+
+          <p className="mt-2 text-sm leading-6 text-slate-500">
+            Documents shared through your Dynava workspace.
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-sm font-medium text-slate-950">
+              AI Readiness Assessment
+            </p>
+
+            <p className="mt-1 text-sm leading-6 text-slate-500">
+              Your assessment workspace will appear here when an assessment is
+              assigned to your organization.
+            </p>
+          </div>
+
+          <span className="inline-flex w-fit rounded-full bg-slate-100 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-slate-500">
+            No active assessment
           </span>
-        </button>
+        </div>
       </div>
     </section>
   );

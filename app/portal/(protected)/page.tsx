@@ -73,6 +73,7 @@ export default async function PortalPage() {
 
   return (
     <ClientWelcome
+      organizationId={organization?.id ?? ""}
       organizationName={organization?.name ?? "your organization"}
     />
   );
